@@ -1,5 +1,12 @@
 using { com.expenseease as db } from '../db/schema';
 
 service ExpenseService @(path: '/odata/v4/expense') {
-    entity Expenses as projection on db.Expenses;
+
+    entity Expenses as projection on db.Expenses actions {
+        action getSuggestion() returns SuggestionResult;
+    };
+
+    type SuggestionResult {
+        suggestion : String;
+    }
 }
